@@ -1,4 +1,181 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // ===== RESPONSIVE DESIGN BASED ON DEVICE =====
+    function detectDeviceAndResize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isTablet = /iPad|Android/i.test(navigator.userAgent) && width >= 768 && width <= 1024;
+        const isPhone = isMobile && width < 768;
+        const isSmallPhone = isPhone && width <= 480;
+        
+        console.log('📱 Device Detection:', {
+            width,
+            height,
+            isMobile,
+            isTablet,
+            isPhone,
+            isSmallPhone,
+            userAgent: navigator.userAgent
+        });
+        
+        // Get key elements
+        const title = document.querySelector('.title');
+        const happy = document.querySelector('.happy');
+        const birthday = document.querySelector('.birthday');
+        const hatImg = document.querySelector('.hat img');
+        const hat = document.querySelector('.title .hat');
+        const flagImgs = document.querySelectorAll('.flag__birthday img');
+        const dateBtn = document.querySelector('.date__of__birth');
+        const letterBtn = document.getElementById('btn__letter');
+        const vinylCard = document.querySelector('.vinyl-card');
+        const vinylWrapper = document.querySelector('.vinyl-wrapper');
+        const vinylRecord = document.querySelector('.vinyl-record');
+        const albumCover = document.querySelector('.album-cover-container');
+        const weekndCard = document.querySelector('.weeknd__card');
+        const photoCard = document.querySelector('.double-photo-card');
+        const mailBox = document.querySelector('.boxMail');
+        const gifs = document.querySelectorAll('.floating-gif');
+        
+        // Apply responsive styles based on device
+        if (isSmallPhone) {
+            // Small phones (< 480px)
+            console.log('🤳 Applying Small Phone styles');
+            if (title) title.style.fontSize = '1.5rem';
+            if (happy) happy.style.fontSize = '1.5rem';
+            if (birthday) birthday.style.fontSize = '1.5rem';
+            if (hatImg) hatImg.style.width = '50px';
+            if (hat) {
+                hat.style.right = '5px';
+                hat.style.top = '-200px';
+            }
+            flagImgs.forEach(img => img.style.width = '100px');
+            if (dateBtn) {
+                dateBtn.style.fontSize = '0.85rem';
+                dateBtn.style.padding = '6px 10px';
+            }
+            if (letterBtn) {
+                letterBtn.style.fontSize = '0.85rem';
+                letterBtn.style.padding = '8px 15px';
+            }
+            if (vinylCard) {
+                vinylCard.style.maxWidth = '90vw';
+                vinylCard.style.padding = '12px';
+            }
+            if (vinylWrapper) {
+                vinylWrapper.style.width = '140px';
+                vinylWrapper.style.height = '140px';
+            }
+            if (vinylRecord) {
+                vinylRecord.style.width = '130px';
+                vinylRecord.style.height = '130px';
+            }
+            if (albumCover) {
+                albumCover.style.width = '85px';
+                albumCover.style.height = '85px';
+            }
+            if (weekndCard) {
+                weekndCard.style.maxWidth = '90vw';
+                weekndCard.style.minHeight = '300px';
+                weekndCard.style.height = 'auto';
+            }
+            if (photoCard) photoCard.style.maxWidth = '90vw';
+            if (mailBox) mailBox.style.width = '90vw';
+            gifs.forEach(gif => {
+                gif.style.width = '60px';
+                gif.style.height = '60px';
+            });
+            
+        } else if (isPhone) {
+            // Regular phones (480px - 768px)
+            console.log('📱 Applying Phone styles');
+            if (title) title.style.fontSize = '1.8rem';
+            if (happy) happy.style.fontSize = '1.8rem';
+            if (birthday) birthday.style.fontSize = '1.8rem';
+            if (hatImg) hatImg.style.width = '60px';
+            if (hat) {
+                hat.style.right = '10px';
+                hat.style.top = '-250px';
+            }
+            flagImgs.forEach(img => img.style.width = '120px');
+            if (dateBtn) {
+                dateBtn.style.fontSize = '0.95rem';
+                dateBtn.style.padding = '8px 12px';
+            }
+            if (letterBtn) {
+                letterBtn.style.fontSize = '0.95rem';
+                letterBtn.style.padding = '10px 20px';
+            }
+            if (vinylCard) {
+                vinylCard.style.maxWidth = '85vw';
+                vinylCard.style.padding = '18px';
+            }
+            if (vinylWrapper) {
+                vinylWrapper.style.width = '160px';
+                vinylWrapper.style.height = '160px';
+            }
+            if (vinylRecord) {
+                vinylRecord.style.width = '150px';
+                vinylRecord.style.height = '150px';
+            }
+            if (albumCover) {
+                albumCover.style.width = '100px';
+                albumCover.style.height = '100px';
+            }
+            if (weekndCard) {
+                weekndCard.style.maxWidth = '85vw';
+                weekndCard.style.minHeight = '350px';
+                weekndCard.style.height = 'auto';
+            }
+            if (photoCard) photoCard.style.maxWidth = '85vw';
+            if (mailBox) mailBox.style.width = '90vw';
+            gifs.forEach(gif => {
+                gif.style.width = '80px';
+                gif.style.height = '80px';
+            });
+            
+        } else if (isTablet) {
+            // Tablets (768px - 1024px)
+            console.log('📱 Applying Tablet styles');
+            if (title) title.style.fontSize = '2.5rem';
+            if (hatImg) hatImg.style.width = '70px';
+            if (hat) {
+                hat.style.right = '30px';
+                hat.style.top = '-300px';
+            }
+            flagImgs.forEach(img => img.style.width = '200px');
+            if (vinylCard) vinylCard.style.maxWidth = '380px';
+            if (weekndCard) weekndCard.style.maxWidth = '500px';
+            if (photoCard) photoCard.style.maxWidth = '500px';
+            
+        } else {
+            // Desktop (> 1024px)
+            console.log('💻 Applying Desktop styles');
+            // Keep default CSS styles
+        }
+    }
+    
+    // Run on load
+    detectDeviceAndResize();
+    
+    // Run on window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            console.log('🔄 Window resized, re-detecting device...');
+            detectDeviceAndResize();
+        }, 250);
+    });
+    
+    // Run on orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+            console.log('🔄 Orientation changed, re-detecting device...');
+            detectDeviceAndResize();
+        }, 100);
+    });
+    
+    // ===== MUSIC PLAYER =====
     // Start background music
     const bgMusic = document.getElementById('bgMusic');
     const muteBtn = document.getElementById('muteBtn');
