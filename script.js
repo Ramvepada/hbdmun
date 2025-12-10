@@ -7,31 +7,50 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to start music
     function startMusic() {
         if (!musicStarted && bgMusic) {
+            console.log('🎵 Attempting to start music...');
+            console.log('Audio src:', bgMusic.src || bgMusic.querySelector('source')?.src);
+            
             bgMusic.volume = 0.5;
-            bgMusic.play().then(() => {
-                console.log('✅ Music started playing');
-                musicStarted = true;
-            }).catch(function(error) {
-                console.log('⚠️ Autoplay prevented:', error);
-            });
+            bgMusic.muted = false;
+            
+            const playPromise = bgMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('✅ Music started playing successfully');
+                    musicStarted = true;
+                }).catch(function(error) {
+                    console.log('⚠️ Autoplay prevented:', error.name, error.message);
+                    console.log('👆 Click anywhere on the page to start music');
+                });
+            }
         }
     }
     
     // Try to play immediately
     if (bgMusic) {
-        startMusic();
+        // Wait a bit for the page to be fully interactive
+        setTimeout(startMusic, 100);
         
         // Fallback: start music on any user interaction
-        const startOnInteraction = function() {
+        const startOnInteraction = function(e) {
+            console.log('User interaction detected:', e.type);
             startMusic();
-            document.removeEventListener('click', startOnInteraction);
-            document.removeEventListener('touchstart', startOnInteraction);
-            document.removeEventListener('keydown', startOnInteraction);
+            // Remove listeners after first successful play
+            if (musicStarted) {
+                document.removeEventListener('click', startOnInteraction);
+                document.removeEventListener('touchstart', startOnInteraction);
+                document.removeEventListener('keydown', startOnInteraction);
+                document.removeEventListener('scroll', startOnInteraction);
+            }
         };
         
         document.addEventListener('click', startOnInteraction);
         document.addEventListener('touchstart', startOnInteraction);
         document.addEventListener('keydown', startOnInteraction);
+        document.addEventListener('scroll', startOnInteraction);
+    } else {
+        console.error('❌ Audio element #bgMusic not found!');
     }
 
     // Mute/Unmute button functionality
