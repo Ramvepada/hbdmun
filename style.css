@@ -32,7 +32,7 @@ body {
     background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255,1) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 1) 76%, transparent 77%, transparent);
     height:100%;
     background-size:80px 80px;
-    overflow: hidden;
+    overflow: visible;
     z-index: 1;
 }
 .flag__birthday{
@@ -594,8 +594,10 @@ body {
 .content__letter .right .text__letter{
     margin-top: 60px;
     padding: 20px 15px 10px 15px;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 .content__letter .right #mewmew{
     position: absolute;
@@ -856,7 +858,7 @@ body {
     width: 50%;
     height: 100%;
     background: linear-gradient(to right, #FF7882, #FF7882 63%);
-    color: white;
+    color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -916,7 +918,7 @@ body {
     transition: all 1s;
     overflow: hidden;
     font-family: "Inter", serif;
-    color: #fff;
+    color: #000000;
 }
 .boxMail .boxMail-container:hover .card2-content{
     transform: translate(20px, 20px);
@@ -954,11 +956,13 @@ body {
     font-size: 22px;
     opacity: 0;
 }
+
 .boxMail .boxMail-container .card2:hover h2{
     animation: texth2 2s forwards;
     animation-delay: 4s;
     transition: 1s;
 }
+
 @keyframes texth2{
     0%{
         opacity: 0;
@@ -980,6 +984,7 @@ body {
     animation-delay: 2s;
     transition: 1s;
 }
+
 @keyframes cute3{
     0%{
         opacity: 1;
@@ -1022,4 +1027,642 @@ body {
     cursor: pointer;
     color: white;
     z-index: 10000000000000000;
+}
+
+/* Cards Container */
+.cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 30px auto 20px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* The Weeknd Birthday Card */
+.weeknd__card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d1b4e 100%);
+    z-index: 1;
+}
+
+.card__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 30px;
+    color: var(--color-white);
+    text-align: center;
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card__header i {
+    font-size: 40px;
+    color: #FF7882;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.card__header h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-family: "Sriracha", cursive;
+    background: linear-gradient(90deg, #FF7882, #ffc0cb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card__message {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.card__message p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--color-white);
+    font-family: "Dancing Script", cursive;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.weeknd__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(90deg, #1DB954, #1ed760);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-family: "Sriracha", cursive;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(30, 215, 96, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.weeknd__btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.weeknd__btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.weeknd__btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(30, 215, 96, 0.5);
+}
+
+.weeknd__btn:active {
+    transform: translateY(-1px);
+}
+
+.weeknd__btn i {
+    font-size: 1.3rem;
+}
+
+.card__footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card__footer span {
+    font-size: 0.9rem;
+    color: #FF7882;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Two-photo flip card */
+.double-photo-card {
+    width: 380px;
+    margin: 0;
+    padding: 25px;
+    flex-shrink: 0;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(255, 120, 130, 0.2) 0%, rgba(147, 51, 234, 0.2) 50%, rgba(255, 120, 130, 0.2) 100%);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 120, 130, 0.4);
+    text-align: center;
+    backdrop-filter: blur(15px);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.95);
+}
+
+.double-photo-card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 25px;
+    padding: 3px;
+    background: linear-gradient(135deg, #FF7882, #9333EA, #FF7882, #ffc0cb);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderGlow 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes borderGlow {
+    0%, 100% { filter: brightness(1) hue-rotate(0deg); }
+    50% { filter: brightness(1.3) hue-rotate(20deg); }
+}
+
+.double-photo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28), 0 0 40px rgba(255, 120, 130, 0.45);
+}
+
+.double-photo-card.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    animation: cardPopIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes cardPopIn {
+    0% { transform: translateY(30px) scale(0.8) rotate(-5deg); opacity: 0; }
+    60% { transform: translateY(-10px) scale(1.05) rotate(2deg); }
+    100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+}
+
+.double-photo-card.popup-mode {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    margin: 0;
+    z-index: 99999;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 120, 130, 0.6), 0 0 100px rgba(147, 51, 234, 0.4);
+}
+
+.double-photo-card.popup-mode:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6), 0 0 70px rgba(255, 120, 130, 0.7), 0 0 110px rgba(147, 51, 234, 0.5);
+}
+
+.double-photo-card.popup-mode::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1;
+}
+
+.card-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 120, 130, 0.6);
+    background: rgba(0, 0, 0, 0.7);
+    color: #FF7882;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    transition: all 0.25s ease;
+}
+
+.popup-mode .card-close {
+    display: flex;
+}
+
+.card-close:hover {
+    background: rgba(255, 120, 130, 0.3);
+    border-color: #FF7882;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 120, 130, 0.6);
+}
+
+.card-header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-family: "Dancing Script", cursive;
+    color: #000000;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-shadow: 0 2px 15px rgba(255, 120, 130, 0.8), 0 0 30px rgba(255, 120, 130, 0.6);
+}
+
+.card-header-decoration i {
+    font-size: 1.2rem;
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+}
+
+.confetti-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FF7882;
+    top: -10px;
+    opacity: 1;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(600px) rotate(720deg); opacity: 0; }
+}
+
+.confetti:nth-child(2n) { background: #9333EA; width: 8px; height: 8px; }
+.confetti:nth-child(3n) { background: #ffc0cb; width: 6px; height: 12px; }
+.confetti:nth-child(4n) { background: #FFD700; width: 7px; height: 7px; }
+.confetti:nth-child(5n) { background: #00CED1; }
+
+.photo-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    opacity: 0;
+    transform: scale(1.03) rotate(-1deg);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25);
+}
+
+.photo-back {
+    transform: scale(1.03) rotate(1deg);
+}
+
+.photo.active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    z-index: 2;
+}
+
+.photo-hint {
+    margin-top: 16px;
+    font-family: "Poppins", sans-serif;
+    color: #000000;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(147, 51, 234, 0.4);
+}
+
+.photo-hint i {
+    animation: pointBounce 1s ease-in-out infinite;
+}
+
+@keyframes pointBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.photo-caption {
+    margin-top: 12px;
+    min-height: 26px;
+    font-family: "Poppins", sans-serif;
+    color: #000000;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 120, 130, 0.4);
+}
+
+.caption {
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.caption.active {
+    display: block;
+}
+
+@keyframes floatFlower {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(5deg); }
+    50% { transform: translateY(-40px) rotate(-5deg); }
+    75% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.bouquet__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 120, 130, 0.5);
+    background: rgba(0, 0, 0, 0.6);
+    color: #FF7882;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+}
+
+.bouquet__close:hover {
+    background: rgba(255, 120, 130, 0.2);
+    border-color: #FF7882;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 120, 130, 0.6);
+}
+
+/* Floating Cat Animations - Using JavaScript */
+.floating-cat {
+    position: fixed;
+    font-size: 3rem;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 999;
+}
+
+/* Floating GIF Decorations */
+.floating-gif {
+    position: fixed;
+    z-index: 8;
+    top: 150px;
+}
+
+.floating-gif img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.gif-1 {
+    left: 5%;
+    top: 100px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.9;
+}
+
+.gif-2 {
+    right: 8%;
+    top: 150px;
+    width: 160px;
+    height: 160px;
+    opacity: 0.85;
+}
+
+.gif-3 {
+    left: 2%;
+    top: 320px;
+    width: 150px;
+    height: 150px;
+    opacity: 0.9;
+}
+
+.gif-4 {
+    right: 5%;
+    top: 340px;
+    width: 170px;
+    height: 170px;
+    opacity: 0.85;
+}
+
+@keyframes runCat1 {
+    0% {
+        left: 0%;
+        top: 10%;
+        transform: scaleX(1);
+    }
+    25% {
+        left: 20%;
+        top: 15%;
+    }
+    50% {
+        left: 50%;
+        top: 25%;
+    }
+    75% {
+        left: 80%;
+        top: 15%;
+    }
+    100% {
+        left: 100%;
+        top: 10%;
+        transform: scaleX(-1);
+    }
+}
+
+@keyframes runCat2 {
+    0% {
+        right: 0%;
+        top: 25%;
+        transform: scaleX(-1);
+    }
+    25% {
+        right: 25%;
+        top: 35%;
+    }
+    50% {
+        right: 50%;
+        top: 45%;
+    }
+    75% {
+        right: 25%;
+        top: 35%;
+    }
+    100% {
+        right: 0%;
+        top: 25%;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes runCat3 {
+    0% {
+        left: 0%;
+        top: 50%;
+    }
+    20% {
+        left: 15%;
+        top: 40%;
+    }
+    40% {
+        left: 40%;
+        top: 55%;
+    }
+    60% {
+        left: 70%;
+        top: 45%;
+    }
+    80% {
+        left: 90%;
+        top: 50%;
+    }
+    100% {
+        left: 100%;
+        top: 50%;
+    }
+}
+
+@keyframes runCat4 {
+    0% {
+        right: 0%;
+        bottom: 20%;
+        transform: scaleX(1);
+    }
+    25% {
+        right: 20%;
+        bottom: 30%;
+    }
+    50% {
+        right: 45%;
+        bottom: 35%;
+    }
+    75% {
+        right: 25%;
+        bottom: 25%;
+    }
+    100% {
+        right: 100%;
+        bottom: 20%;
+        transform: scaleX(-1);
+    }
+}
+
+@keyframes runCat5 {
+    0% {
+        left: -50px;
+        bottom: 10%;
+        transform: translateX(0) scaleX(1);
+    }
+    25% {
+        left: 20%;
+        bottom: 20%;
+    }
+    50% {
+        left: 50%;
+        bottom: 35%;
+        transform: translateX(-50%) scaleX(-1);
+    }
+    75% {
+        left: 80%;
+        bottom: 20%;
+    }
+    100% {
+        left: calc(100% + 50px);
+        bottom: 10%;
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+.bouquet__close:active {
+    transform: rotate(90deg) scale(0.95);
 }
