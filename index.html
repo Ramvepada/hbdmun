@@ -16,6 +16,12 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Background music -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="./images/angel.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
     <div id="wrapper">
         <div class="flag__birthday">
             <img src="./images/1.png" alt="" width="350" class="flag__left">
@@ -189,6 +195,32 @@ Happy Birthday 🌸 May Allah bless your days with joy, protect your heart with 
 
     <!-- Floating cat animations -->
         <div class="cards-container">
+        <!-- Vinyl Player Card -->
+        <div class="vinyl-card">
+            <div class="vinyl-card-header">
+                <i class="fa-solid fa-music"></i>
+                <span>Now Playing</span>
+                <button id="muteBtn" class="mute-button" aria-label="Toggle mute">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+            <div class="vinyl-card-content">
+                <div class="vinyl-wrapper">
+                    <div class="vinyl-record">
+                        <div class="album-cover-container">
+                            <img src="./images/album.png" alt="Album Cover" class="album-cover">
+                        </div>
+                        <div class="vinyl-center"></div>
+                    </div>
+                </div>
+                <div class="song-info">
+                    <div class="song-name">Angel</div>
+                    <div class="song-artist">The Weeknd</div>
+                    <div class="song-album">Beauty Behind the Madness</div>
+                </div>
+            </div>
+        </div>
+
         <div class="weeknd__card">
             <div class="card__background"></div>
             <div class="card__content">

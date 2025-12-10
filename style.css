@@ -449,7 +449,7 @@ body {
 .smiley__icon{
     position: absolute;
     bottom: 180px;
-    left: 600px;
+    left: 750px;
     transform: scale(0);
     animation: scaleCricle 3s 15s forwards ease-in-out;
 }
@@ -1041,6 +1041,244 @@ body {
     padding: 0 20px;
 }
 
+/* Vinyl Player Card */
+.vinyl-card {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: playerGlow 3s ease-in-out infinite;
+    z-index: 99999999999999999;
+}
+
+.vinyl-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1DB954;
+    text-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+    position: relative;
+    z-index: 999999999999999998;
+}
+
+.vinyl-card-header i {
+    font-size: 1.4rem;
+    color: #1DB954;
+}
+
+.mute-button {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ffffff;
+    font-size: 1rem;
+    padding: 0;
+    outline: none;
+    pointer-events: auto !important;
+    z-index: 999999999999999999;
+    position: relative;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.mute-button i {
+    pointer-events: none;
+}
+
+.mute-button:hover {
+    background: rgba(29, 185, 84, 0.2);
+    border-color: #1DB954;
+    transform: scale(1.1);
+}
+
+.mute-button:active {
+    transform: scale(0.95);
+}
+
+.mute-button:focus {
+    border-color: #1DB954;
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+}
+
+.mute-button.muted {
+    background: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.5);
+    color: #ff3b30;
+}
+
+.mute-button.muted:hover {
+    background: rgba(255, 59, 48, 0.3);
+}
+
+.vinyl-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.vinyl-wrapper {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+/* Vinyl Player - Legacy */
+.vinyl-player {
+    display: none;
+}
+
+.vinyl-record {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #333, #000);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 -5px 20px rgba(0, 0, 0, 0.7),
+        inset 0 5px 10px rgba(255, 255, 255, 0.1);
+    animation: spinVinyl 4s linear infinite;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.3) 50%),
+        repeating-radial-gradient(
+            circle at 50% 50%,
+            transparent 0px,
+            transparent 8px,
+            rgba(255, 255, 255, 0.08) 8px,
+            rgba(255, 255, 255, 0.08) 10px
+        ),
+        radial-gradient(circle at 30% 30%, #333, #000);
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+}
+
+.album-cover-container {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.album-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vinyl-center {
+    display: none;
+}
+
+@keyframes spinVinyl {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.vinyl-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #FF7882;
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.song-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 15px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    min-width: 240px;
+    width: 100%;
+}
+
+.song-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.song-artist {
+    font-size: 1rem;
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.song-album {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    font-style: normal;
+}
+
+@keyframes playerGlow {
+    0%, 100% {
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.05),
+            0 0 20px rgba(29, 185, 84, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.6),
+            0 0 0 1px rgba(255, 255, 255, 0.05),
+            0 0 30px rgba(29, 185, 84, 0.2);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
 /* The Weeknd Birthday Card */
 .weeknd__card {
     position: relative;
@@ -1495,6 +1733,14 @@ body {
     position: fixed;
     z-index: 8;
     top: 150px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.floating-gif.visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .floating-gif img {
@@ -1508,7 +1754,6 @@ body {
     top: 100px;
     width: 180px;
     height: 180px;
-    opacity: 0.9;
 }
 
 .gif-2 {
@@ -1516,7 +1761,6 @@ body {
     top: 150px;
     width: 160px;
     height: 160px;
-    opacity: 0.85;
 }
 
 .gif-3 {
@@ -1524,7 +1768,6 @@ body {
     top: 320px;
     width: 150px;
     height: 150px;
-    opacity: 0.9;
 }
 
 .gif-4 {
@@ -1532,7 +1775,6 @@ body {
     top: 340px;
     width: 170px;
     height: 170px;
-    opacity: 0.85;
 }
 
 @keyframes runCat1 {
@@ -1665,4 +1907,317 @@ body {
 
 .bouquet__close:active {
     transform: rotate(90deg) scale(0.95);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile Devices (320px - 768px) */
+@media (max-width: 768px) {
+    * {
+        font-size: 14px;
+    }
+    
+    body {
+        font-size: 14px;
+    }
+    
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left, .right {
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .title h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .happy, .birthday {
+        font-size: 1.8rem !important;
+    }
+    
+    .hat img {
+        width: 80px !important;
+        height: auto;
+    }
+    
+    .date__of__birth {
+        font-size: 1rem !important;
+        padding: 10px 15px;
+    }
+    
+    .btn button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .box__account {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .box__account .image img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .balloon_one, .balloon_two {
+        display: none;
+    }
+    
+    .cricle {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .flag__birthday img {
+        width: 150px !important;
+    }
+    
+    .decorate_star, .decorate_flower--one, .decorate_flower--two, .decorate_flower--three {
+        display: none;
+    }
+    
+    /* Letter Modal */
+    .box__letter .letter__border {
+        width: 95vw !important;
+        height: auto !important;
+        max-height: 90vh;
+        padding: 15px;
+    }
+    
+    .content__letter {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+    
+    .content__letter .left, .content__letter .right {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 2px solid var(--color-border);
+        padding: 15px !important;
+    }
+    
+    .content__letter .right .text__letter {
+        margin-top: 15px !important;
+        padding: 15px !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Mail Box */
+    .boxMail {
+        width: 95vw;
+        max-width: 500px;
+    }
+    
+    .card1, .card2 {
+        padding: 15px;
+    }
+    
+    .imageCute, .imageCute2 {
+        max-width: 150px;
+    }
+    
+    /* Cards Container */
+    .cards-container {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px auto;
+    }
+    
+    /* Vinyl Player Card Mobile */
+    .vinyl-card {
+        max-width: 90vw;
+        padding: 20px;
+        margin: 0 auto;
+    }
+    
+    .vinyl-wrapper {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+    }
+    
+    .vinyl-record {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .vinyl-center {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .album-cover-container {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .weeknd__card {
+        max-width: 90vw;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .double-photo-card {
+        max-width: 90vw;
+        margin: 0 auto;
+    }
+    
+    /* Floating GIFs - Mobile */
+    .floating-gif {
+        position: fixed !important;
+        display: block !important;
+        margin: 10px 5px;
+        width: 80px !important;
+        height: 80px !important;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+    }
+    
+    .floating-gif.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    /* Animated Cats - Mobile */
+    .floating-cat {
+        font-size: 2rem !important;
+    }
+    
+    /* Hide large decorations on mobile */
+    .smiley__icon {
+        display: none;
+    }
+}
+
+/* Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+    * {
+        font-size: 13px;
+    }
+    
+    .happy, .birthday {
+        font-size: 1.4rem !important;
+    }
+    
+    .title h1 span {
+        font-size: 1.2rem !important;
+    }
+    
+    .date__of__birth {
+        font-size: 0.9rem !important;
+        padding: 8px 10px;
+    }
+    
+    .btn button {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .box__account .image img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .name {
+        font-size: 0.9rem;
+    }
+    
+    .box__letter .letter__border {
+        width: 98vw !important;
+        padding: 10px;
+    }
+    
+    .card1 h4, .card2 h3 {
+        font-size: 0.9rem;
+    }
+    
+    .floating-gif {
+        width: 60px !important;
+        height: 60px !important;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+    }
+    
+    .floating-gif.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .floating-cat {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cards-container {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .weeknd__card, .double-photo-card {
+        max-width: 100%;
+        flex: 0 1 calc(50% - 10px);
+    }
+}
+
+/* Large Desktop (1025px and above) */
+@media (min-width: 1025px) {
+    .content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 100vh;
+    }
+    
+    .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

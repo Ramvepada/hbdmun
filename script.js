@@ -1,4 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Start background music
+    const bgMusic = document.getElementById('bgMusic');
+    const muteBtn = document.getElementById('muteBtn');
+    
+    if (bgMusic) {
+        bgMusic.volume = 0.5; // Set volume to 50%
+        bgMusic.play().catch(function(error) {
+            console.log('Autoplay prevented. Music will start on user interaction.');
+            // Fallback: start music on first user click
+            document.addEventListener('click', function playMusic() {
+                bgMusic.play();
+                document.removeEventListener('click', playMusic);
+            }, { once: true });
+        });
+    }
+
+    // Mute/Unmute button functionality
+    if (muteBtn) {
+        console.log('✅ Mute button found:', muteBtn);
+        console.log('✅ Audio element:', bgMusic);
+        
+        muteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const audio = document.getElementById('bgMusic');
+            if (!audio) {
+                console.error('❌ Audio element not found!');
+                return;
+            }
+            
+            console.log('🔘 Mute button clicked! Current muted state:', audio.muted);
+            
+            if (audio.muted) {
+                audio.muted = false;
+                muteBtn.querySelector('i').className = 'fa-solid fa-volume-high';
+                muteBtn.classList.remove('muted');
+                console.log('🔊 Audio UNMUTED');
+            } else {
+                audio.muted = true;
+                muteBtn.querySelector('i').className = 'fa-solid fa-volume-xmark';
+                muteBtn.classList.add('muted');
+                console.log('🔇 Audio MUTED');
+            }
+        });
+    } else {
+        console.error('❌ Mute button NOT found!');
+    }
+
     const datetxt = "13th December";
     const datatxtletter = "My love. You are a very special girl. At first, you were a gentle breeze—passing softly, barely felt. But day by day, you became the flame that warmed my heart. You carry time with such grace, as if each moment bends to your presence.I am grateful for the simple chance of crossing paths with you. . Happy birthday to you.💕";
     const titleLetter = "To you";
@@ -149,15 +198,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const mailBox = document.querySelector('.mail');
     const boxmail = document.querySelector('.boxMail');
     const xClose = document.querySelector('.fa-xmark');
+    const floatingGifs = document.querySelectorAll('.floating-gif');
+    
     if (mailBox) {
         mailBox.onclick = function () {
             mailBox.classList.toggle('active');
             if (boxmail) boxmail.classList.add('active');
+            // Show GIFs when mailbox opens
+            floatingGifs.forEach(gif => gif.classList.add('visible'));
         };
     }
     if (xClose && boxmail) {
         xClose.addEventListener('click', function () {
             boxmail.classList.remove('active');
+            // Hide GIFs when mailbox closes
+            floatingGifs.forEach(gif => gif.classList.remove('visible'));
             
             // Show double-photo card after closing mail
             setTimeout(function() {
@@ -201,6 +256,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const cats = document.querySelectorAll('.floating-cat');
     console.log('Found cats:', cats.length);
     
+    // Weeknd card appears around 500px from top, constrain cats above it
+    const maxCatY = 450;
+    
     if (cats.length > 0) {
         // Cat 1 - Horizontal bouncing
         (function(cat) {
@@ -210,8 +268,9 @@ document.addEventListener('DOMContentLoaded', function () {
             function animate() {
                 x += speed;
                 if (x > window.innerWidth) x = -50;
+                const newY = y + Math.sin(x / 50) * 30;
                 cat.style.left = x + 'px';
-                cat.style.top = (y + Math.sin(x / 50) * 30) + 'px';
+                cat.style.top = Math.min(newY, maxCatY) + 'px';
                 cat.style.transform = 'scaleX(1)';
                 requestAnimationFrame(animate);
             }
@@ -228,7 +287,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 x += speedX;
                 y += speedY;
                 if (x < -50) x = window.innerWidth;
-                if (y > window.innerHeight - 50 || y < 50) speedY = -speedY;
+                // Constrain to stay above Weeknd card
+                if (y > maxCatY) {
+                    y = maxCatY;
+                    speedY = -speedY;
+                } else if (y < 50) {
+                    y = 50;
+                    speedY = -speedY;
+                }
                 cat.style.left = x + 'px';
                 cat.style.top = y + 'px';
                 cat.style.transform = 'scaleX(-1)';
@@ -241,12 +307,14 @@ document.addEventListener('DOMContentLoaded', function () {
         (function(cat) {
             let angle = 0;
             let centerX = window.innerWidth / 2;
-            let centerY = window.innerHeight / 2;
-            let radius = 200;
+            let centerY = 200;
+            let radius = 150;
             function animate() {
                 angle += 0.02;
                 let x = centerX + Math.cos(angle) * radius;
                 let y = centerY + Math.sin(angle) * radius;
+                // Constrain Y to stay above Weeknd card
+                y = Math.max(50, Math.min(y, maxCatY));
                 cat.style.left = x + 'px';
                 cat.style.top = y + 'px';
                 cat.style.transform = angle % (Math.PI * 2) > Math.PI ? 'scaleX(-1)' : 'scaleX(1)';
@@ -258,15 +326,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Cat 4 - Zigzag pattern
         (function(cat) {
             let x = 0;
-            let y = window.innerHeight - 150;
+            let y = 300;
             let speed = 2;
-            let direction = 1;
             function animate() {
                 x += speed;
-                y += Math.sin(x / 30) * 3;
+                const newY = y + Math.sin(x / 30) * 3;
                 if (x > window.innerWidth) x = -50;
                 cat.style.left = x + 'px';
-                cat.style.top = y + 'px';
+                cat.style.top = Math.min(newY, maxCatY) + 'px';
                 cat.style.transform = 'scaleX(1)';
                 requestAnimationFrame(animate);
             }
@@ -294,9 +361,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     changeCounter = 0;
                 }
                 
-                // Bounce off walls
+                // Bounce off walls and constrain to stay above Weeknd card
                 if (x > window.innerWidth - 50 || x < 50) speedX = -speedX;
-                if (y > window.innerHeight - 50 || y < 50) speedY = -speedY;
+                if (y > maxCatY - 50 || y < 50) speedY = -speedY;
+                
+                // Ensure Y stays in bounds
+                y = Math.max(50, Math.min(y, maxCatY));
                 
                 cat.style.left = x + 'px';
                 cat.style.top = y + 'px';
