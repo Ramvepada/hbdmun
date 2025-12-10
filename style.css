@@ -1719,15 +1719,6 @@ body {
     box-shadow: 0 0 20px rgba(255, 120, 130, 0.6);
 }
 
-/* Floating Cat Animations - Using JavaScript */
-.floating-cat {
-    position: fixed;
-    font-size: 3rem;
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 999;
-}
-
 /* Floating GIF Decorations */
 .floating-gif {
     position: fixed;
@@ -2181,11 +2172,6 @@ body {
         pointer-events: auto;
     }
     
-    /* Animated Cats - Mobile */
-    .floating-cat {
-        font-size: 2rem !important;
-    }
-    
     /* Hide large decorations on mobile */
     .smiley__icon {
         display: none;
@@ -2245,10 +2231,6 @@ body {
     .floating-gif.visible {
         opacity: 1;
         pointer-events: auto;
-    }
-    
-    .floating-cat {
-        font-size: 1.5rem !important;
     }
 }
 
