@@ -2,17 +2,36 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start background music
     const bgMusic = document.getElementById('bgMusic');
     const muteBtn = document.getElementById('muteBtn');
+    let musicStarted = false;
     
+    // Function to start music
+    function startMusic() {
+        if (!musicStarted && bgMusic) {
+            bgMusic.volume = 0.5;
+            bgMusic.play().then(() => {
+                console.log('✅ Music started playing');
+                musicStarted = true;
+            }).catch(function(error) {
+                console.log('⚠️ Autoplay prevented:', error);
+            });
+        }
+    }
+    
+    // Try to play immediately
     if (bgMusic) {
-        bgMusic.volume = 0.5; // Set volume to 50%
-        bgMusic.play().catch(function(error) {
-            console.log('Autoplay prevented. Music will start on user interaction.');
-            // Fallback: start music on first user click
-            document.addEventListener('click', function playMusic() {
-                bgMusic.play();
-                document.removeEventListener('click', playMusic);
-            }, { once: true });
-        });
+        startMusic();
+        
+        // Fallback: start music on any user interaction
+        const startOnInteraction = function() {
+            startMusic();
+            document.removeEventListener('click', startOnInteraction);
+            document.removeEventListener('touchstart', startOnInteraction);
+            document.removeEventListener('keydown', startOnInteraction);
+        };
+        
+        document.addEventListener('click', startOnInteraction);
+        document.addEventListener('touchstart', startOnInteraction);
+        document.addEventListener('keydown', startOnInteraction);
     }
 
     // Mute/Unmute button functionality
